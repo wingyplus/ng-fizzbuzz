@@ -1,4 +1,6 @@
 (function(fizzbuzz){
+  'use strict';
+
   fizzbuzz.controller('FizzBuzzController', function($scope) {
     $scope.word = null;
 
