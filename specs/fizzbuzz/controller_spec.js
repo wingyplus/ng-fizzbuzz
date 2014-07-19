@@ -1,4 +1,4 @@
-(function() {
+(function(describe, it, beforeEach, expect, inject, module) {
   'use strict';
   describe('fizzbuzz', function() {
     beforeEach(module('fizzbuzz'));

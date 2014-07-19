@@ -1,7 +1,7 @@
 (function(fizzbuzz){
   'use strict';
 
-  fizzbuzz.controller('FizzBuzzController', function($scope) {
+  function FizzBuzzController($scope) {
     $scope.word = null;
 
     $scope.doFizzBuzz = function(number) {
@@ -13,5 +13,7 @@
         $scope.word = 1;
       }
     };
-  });
+  }
+
+  fizzbuzz.controller('FizzBuzzController', FizzBuzzController);
 })(angular.module('fizzbuzz'));
