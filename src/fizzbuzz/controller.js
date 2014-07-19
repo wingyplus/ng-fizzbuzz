@@ -1,19 +1,13 @@
 (function(fizzbuzz){
   'use strict';
 
-  function FizzBuzzController($scope) {
+  function FizzBuzzController($scope, fizzBuzzService) {
     $scope.word = null;
 
     $scope.doFizzBuzz = function(number) {
-      if (number % 3 === 0) {
-        $scope.word = 'Fizz';
-      } else if (number % 5 === 0) {
-        $scope.word = 'Buzz';
-      } else {
-        $scope.word = 1;
-      }
+      $scope.word = fizzBuzzService.doFizzBuzz(number);
     };
   }
 
-  fizzbuzz.controller('FizzBuzzController', FizzBuzzController);
+  fizzbuzz.controller('FizzBuzzController', ['$scope', 'FizzBuzzService', FizzBuzzController]);
 })(angular.module('fizzbuzz'));

@@ -1,35 +1,28 @@
-(function(describe, it, beforeEach, expect, inject, module) {
+(function(describe, it, beforeEach, expect, inject, module, spyOn) {
   'use strict';
   describe('fizzbuzz', function() {
     beforeEach(module('fizzbuzz'));
 
     describe('controller', function() {
-      var controller, scope;
+      var controller, service, scope;
 
       beforeEach(inject(function($controller, $rootScope) {
         scope = $rootScope.$new();
+        service = {
+          doFizzBuzz: function(number) {}
+        };
+        spyOn(service, 'doFizzBuzz');
         controller = $controller('FizzBuzzController', {
-          $scope: scope
+          $scope: scope,
+          FizzBuzzService: service
         });
       }));
 
-      it('should return 1 when input 1', function() {
+      it('should been called "fizzBuzzService"', function() {
         scope.doFizzBuzz(1);
 
-        expect(scope.word).toEqual(1);
-      });
-
-      it('should return "Fizz" when input 3', function() {
-        scope.doFizzBuzz(3);
-
-        expect(scope.word).toEqual('Fizz');
-      });
-
-      it('should return "Buzz" when input 5', function() {
-        scope.doFizzBuzz(5);
-
-        expect(scope.word).toEqual('Buzz');
+        expect(service.doFizzBuzz).toHaveBeenCalledWith(1);
       });
     });
   });
-})(describe, it, beforeEach, expect, inject, module);
+})(describe, it, beforeEach, expect, inject, module, spyOn);
